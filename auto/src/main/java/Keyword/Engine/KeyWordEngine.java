@@ -115,10 +115,12 @@ public class KeyWordEngine {
 						element = driver.findElement(By.id(locatorValue));
 						if (Action.equalsIgnoreCase("sendkeys")) {
 							Thread.sleep(500);
+							element.click();
 							element.clear();
 							element.sendKeys(value);
 						} else if (Action.equalsIgnoreCase("click")) {
 							// js.executeScript("arguments[0].scrollIntoView(true);", element);
+							Thread.sleep(300);
 							element.click();
 						} else if (Action.equalsIgnoreCase("isDisplayed")) {
 							element.isDisplayed();
@@ -211,6 +213,10 @@ public class KeyWordEngine {
 							  
 						  }	else if (Action.equalsIgnoreCase("compare WebElement value")) {
 							  compareElementValue(element,expType,expValue);
+						  }
+						  else if(Action.equalsIgnoreCase("check for presence")) {
+							  Thread.sleep(200);
+							  checkForPresence(element);
 						  }
 						locatorType = null;
 						break;
@@ -366,7 +372,6 @@ public class KeyWordEngine {
 
 	
 	
-	
 	//compares text in a webElement
 	public void compareElementText(WebElement element, String type, String val) throws MyException {
 		if (type.equalsIgnoreCase("WebElement with ID")) {
@@ -419,6 +424,8 @@ public class KeyWordEngine {
 		}
 	}
 	
+	
+	//compares the value in the web elements
 	public void compareElementValue(WebElement element, String type, String val) throws MyException {
 		if (type.equalsIgnoreCase("WebElement with ID")) {
 			WebElement element2 = driver.findElement(By.id(val));
@@ -467,7 +474,15 @@ public class KeyWordEngine {
 			if (!(Integer.parseInt(element.getText())==(Integer.parseInt(element2.getText())))) {
 				throw new MyException("Value doesn't match");
 			}
+		}		
+	}
+	
+	
+	//validate the presence of an element on the browser
+	public void checkForPresence(WebElement element) throws MyException {
+		boolean res=element.isDisplayed();
+		if(res==false) {
+			throw new MyException("Element not found");
 		}
-		
 	}
 }

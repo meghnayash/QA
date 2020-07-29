@@ -23,12 +23,16 @@ public class Base {
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("--headless");
 				driver = new ChromeDriver(options);
+				driver.manage().deleteAllCookies();
+				driver.manage().window().maximize();
 			} else {
 				driver = new ChromeDriver();
+				driver.manage().window().maximize();
 			}
 		} else if (browserName.equals("firefox")) {
 			System.setProperty("webdriver.gecko.driver", "C:\\Selenium setup\\Workspace\\auto\\Driver\\geckodriver.exe");
 			driver = new FirefoxDriver();
+			driver.manage().window().maximize();
 		}
 		return driver;
 	}

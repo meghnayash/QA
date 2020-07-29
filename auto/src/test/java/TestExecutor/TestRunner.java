@@ -8,15 +8,14 @@ import Keyword.Engine.KeyWordEngine;
 public class TestRunner {
 
 	public KeyWordEngine keywordEngine;
-	
+
 	@BeforeClass
 	public void initialize() {
 		keywordEngine = new KeyWordEngine();
 	}
-	
+
 	@Test
-	public void FramerQuotaTest() {
-		keywordEngine.startExecution("Farmer_Quota");
+	public void Test() {
+		keywordEngine.startExecution("Input_sheet");
 	}
-	
 }
